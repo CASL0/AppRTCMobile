@@ -1,49 +1,49 @@
 plugins {
-	id 'com.android.library'
-	id 'kotlin-android'
-	id 'kotlin-kapt'
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-	compileSdk versionCompiler
+    compileSdk libs.versions.compilesdk.get().toInteger()
 
-	compileOptions {
-		sourceCompatibility javaSourceCompatibility
-		targetCompatibility javaTargetCompatibility
-	}
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
-	defaultConfig {
-		minSdkVersion 21
-		targetSdkVersion versionTarget
-		versionCode versionCodeNum
-		versionName versionNameString
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion libs.versions.targetsdk.get().toInteger()
+        versionCode libs.versions.version.code.get().toInteger()
+        versionName libs.versions.version.name.get()
 
-		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-	}
+    }
 
-	buildTypes {
-		release {
-			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-		}
-	}
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
-	testImplementation "junit:junit:${junitVersion}"
-	androidTestImplementation "androidx.test.ext:junit:${androidXTestRunnerVersion}"
-	androidTestImplementation "androidx.test.espresso:espresso-core:${androidXEspressoVersion}"
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 
-	implementation "androidx.appcompat:appcompat:${androidXAppCompat}"
-	implementation "androidx.legacy:legacy-support-v4:${androidXLegacyV4}"
+    implementation libs.appcompat
+    implementation libs.legacy.support.v4
 //	implementation "com.google.android.material:material:${androidXMaterial}"
 
-	implementation "com.serenegiant:common:${commonLibVersion}"
+    implementation libs.common
 
-	implementation project(':libwebrtc')
+    implementation project(':libwebrtc')
 }
 
 def repo = new File(rootDir, "repository")
@@ -51,36 +51,36 @@ def repo = new File(rootDir, "repository")
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-	publishing {
-		repositories {
-			maven {
-				url = "file://${repo.absolutePath}"
-			}
-		}
-		publications {
-			release(MavenPublication) {
-				groupId = 'com.serenegiant'
-				artifactId = 'webrtc'
-				version = webrtcAarVersionString
-				from components.release
-				pom {
-					inceptionYear = '2018'
-					licenses {
-						license {
-							name = 'The WebRTC Software License'
-							url = 'https://webrtc.org/support/license'
-							distribution = 'repo'
-						}
-					}
-					developers {
-						developer {
-							id = 'saki4510t'
-							name = 't_saki'
-							email = 't_saki@serenegiant.com'
-						}
-					}
-				}
-			}
-		}
-	}
+    publishing {
+        repositories {
+            maven {
+                url = "file://${repo.absolutePath}"
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.serenegiant'
+                artifactId = 'webrtc'
+                version = webrtcAarVersionString
+                from components.release
+                pom {
+                    inceptionYear = '2018'
+                    licenses {
+                        license {
+                            name = 'The WebRTC Software License'
+                            url = 'https://webrtc.org/support/license'
+                            distribution = 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'saki4510t'
+                            name = 't_saki'
+                            email = 't_saki@serenegiant.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
