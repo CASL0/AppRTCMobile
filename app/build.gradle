@@ -1,27 +1,27 @@
 plugins {
-	id 'com.android.application'
-	id 'kotlin-android'
-	id 'kotlin-kapt'
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-	compileSdk versionCompiler
+    compileSdk versionCompiler
 
-	compileOptions {
-		sourceCompatibility javaSourceCompatibility
-		targetCompatibility javaTargetCompatibility
-	}
+    compileOptions {
+        sourceCompatibility javaSourceCompatibility
+        targetCompatibility javaTargetCompatibility
+    }
 
     defaultConfig {
-		minSdkVersion 21
-		targetSdkVersion versionTarget
-		versionCode versionCodeNum
-		versionName versionNameString
-		vectorDrawables.useSupportLibrary = true
-        applicationId "com.serenegiant.apprtcmobile"
+        minSdkVersion 21
+        targetSdkVersion versionTarget
+        versionCode versionCodeNum
+        versionName versionNameString
+        vectorDrawables.useSupportLibrary = true
+        applicationId "io.github.casl0.apprtcmobile"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-		multiDexEnabled true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -31,25 +31,25 @@ android {
         }
     }
 
-	kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	testImplementation "junit:junit:${junitVersion}"
-	androidTestImplementation "androidx.test.ext:junit:${androidXTestRunnerVersion}"
-	androidTestImplementation "androidx.test.espresso:espresso-core:${androidXEspressoVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${androidXTestRunnerVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${androidXEspressoVersion}"
 
-	implementation "androidx.appcompat:appcompat:${androidXAppCompat}"
-	implementation "androidx.legacy:legacy-support-v4:${androidXLegacyV4}"
-	implementation "androidx.constraintlayout:constraintlayout:${androidXConstraint}"
-	implementation "com.google.android.material:material:${androidXMaterial}"
-	implementation "androidx.recyclerview:recyclerview:${androidXRecyclerview}"
-	implementation "androidx.multidex:multidex:${androidXMultiDex}"
+    implementation "androidx.appcompat:appcompat:${androidXAppCompat}"
+    implementation "androidx.legacy:legacy-support-v4:${androidXLegacyV4}"
+    implementation "androidx.constraintlayout:constraintlayout:${androidXConstraint}"
+    implementation "com.google.android.material:material:${androidXMaterial}"
+    implementation "androidx.recyclerview:recyclerview:${androidXRecyclerview}"
+    implementation "androidx.multidex:multidex:${androidXMultiDex}"
 
-	implementation "com.serenegiant:common:${commonLibVersion}"
+    implementation "com.serenegiant:common:${commonLibVersion}"
 
-	implementation project(':libwebrtc')
-	implementation project(':webrtc')
+    implementation project(':libwebrtc')
+    implementation project(':webrtc')
 }
