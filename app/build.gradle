@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace "org.appspot.apprtc"
     compileSdk libs.versions.compilesdk.get().toInteger()
 
     compileOptions {
